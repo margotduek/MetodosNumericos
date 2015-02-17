@@ -3,17 +3,33 @@
 
 function [R,E]  = convierteReal(n , m , e , b)
   if(b == 0)
-    %#convertir de decimal a binario
+    decimoalABinario(n , m , e);
   else if(b == 1)
     binarioADecimal(n , m , e);
   else
     %return -1;
   end
-end
+  end
 end
 
 
 function [R, E] = decimoalABinario(n , m , e)
+  if (n < 0)
+    signoMantisa = '1';
+  else
+    signoMantisa = '0';
+  end
+  if(n > 0 & n < 1)
+    signoExponente = '1';
+  else
+    signoExponente = '0';
+  end
+  mantisa = dec2bin(n)
+  [tamm, tam] = size(mantisa);
+  exponente = dec2bin(tam)
+  r = strcat(signoMantisa, signoExponente, exponente, mantisa)
+  
+
 
 end
 
