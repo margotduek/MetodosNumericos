@@ -56,7 +56,7 @@ function [R, E] = binarioADecimal(n , m , e)
   %for(ii = 3 : e+2)
   %  exponente += n(ii);
   %end
-  exponente = n(3:e+2)
+  exponente = n(3:e+2);
   expon = bin2dec (exponente);
 
   %Este for se puede hacer de una manera más eficiente con el método que está
@@ -64,29 +64,28 @@ function [R, E] = binarioADecimal(n , m , e)
   %for(jj = e + 2 : tam)
   %  mantisa += n(jj);
   %end
-  mantisa = n(e+3:tamm)
-  mantisa = bin2dec(mantisa)
+  mantisa = n(e+3:tamm);
+  mantisa = bin2dec(mantisa);
 
-  for(mi = 0: m)
-    punto *= 10;
-  end
-  for(ei = 0 : exponente)
-    cerosExponente *= 10;
-  end
+  %for(mi = 1: m)
+  %  punto *= 10;
+  %end
+  %for(ei = 1 : expon)
+  %  cerosExponente *= 10;
+  %end
 
-  if(signoE == "1")
-    %r = (mantisa/exponente) / cerosExponente
-    Ri = bin2dec(r)
-  else if(signoE == "0")
-    %r = (mantisa/exponente) * cerosExponente
-    Ri = bin2dec(r)
-  end
-  end
+  %if(signoE == "1")
+  %  r = (mantisa/punto) / cerosExponente
+  %  Ri = bin2dec(r)
+  %else if(signoE == "0")
+  %  Ri = bin2dec(mantisa);
+  %end
+  %end
 
   if(signoM == "1")
-    R = Ri * -1
+    R = mantisa * -1;
   else if(signoM == "0")
-    R = Ri
+    R = Ri;
   end
   end
   E = "ahorita les digpo";
