@@ -55,13 +55,13 @@ function [R, E] = decimoalABinario(n , m , e)
   end
   %Concatenamos los numeros en binario que tenemos
   r = strcat(signoMantisa, signoExponente, exponente, mantisa, ".", decimales);
-  ab = strcat(signoMantisa, signoExponente, exponente, mantisa, decimales);
+  ab = strcat(signoMantisa, signoExponente, exponente, mantisa, decimales)
   R = ab(1:tamanio)
   [l,tamr] = size(R);
   [ll,tamab] = size(ab);
   if(tamr < tamab)
     e = ab(tamanio: tamab)
-    E = bin2dec(e)
+    E = (bin2dec(e))/100
   end
 end
 
