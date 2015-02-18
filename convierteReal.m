@@ -16,6 +16,7 @@ end
 
 %función en la cual se convierte de decimal a binario:
 function [R, E] = decimoalABinario(n , m , e)
+  tamanio = 2 + m + e;
   %Primer if, para ver si la mantisa es positiva o negativa
   temp = floor(n);
   puntoFlotante = n - temp;
@@ -33,11 +34,11 @@ function [R, E] = decimoalABinario(n , m , e)
     signoExponente = '0';
   end
   %convertimos el numero a decimal a binario
-  mantisa = dec2bin(n)
+  mantisa = dec2bin(n);
   %Revisamos el tamaño de la amntisa
   [tamm, tam] = size(mantisa);
   %Convertimos el exponente a binario
-  exponente = dec2bin(tam)
+  exponente = dec2bin(tam);
 
   %Convertimos manualmente el puento decimal porque no existe puncion que los
   %convierta.
@@ -53,9 +54,15 @@ function [R, E] = decimoalABinario(n , m , e)
     end
   end
   %Concatenamos los numeros en binario que tenemos
-  r = strcat(signoMantisa, signoExponente, exponente, mantisa, ".", decimales)
-  R = r;
-  E = "No importa";
+  r = strcat(signoMantisa, signoExponente, exponente, mantisa, ".", decimales);
+  ab = strcat(signoMantisa, signoExponente, exponente, mantisa, decimales);
+  R = ab(1:tamanio)
+  [l,tamr] = size(R);
+  [ll,tamab] = size(ab);
+  if(tamr < tamab)
+    e = ab(tamanio: tamab)
+    E = bin2dec(e)
+  end
 end
 
 
