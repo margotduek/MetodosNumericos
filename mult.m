@@ -9,3 +9,4 @@ function res = mult(a ,b )
     res *= a ;
   end
 end
+ 
