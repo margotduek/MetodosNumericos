@@ -54,14 +54,16 @@ function R = notValid(X, Y, N, O)
 end
 
 ## Vector Vector -> void
-## Plots the ordered points with black + markers. 
-function = plotExactPoints(X, Y)
-  plot(X, Y, '+');
+## Plots the ordered points with black + markers.
+## TODO: CURRENTLY PLOTS GREEN CROSS MARKERS. 
+function plotExactPoints(X, Y)
+  plot(X, Y, "@12");
 end
 
 ## Vector Vector -> void
-## Plots the ordered points with blue circular markers. 
-function = plotOtherPoints(X, Y)
+## Plots the ordered points with blue circular markers.
+## TODO: CURRENTLY PLOTS BLUE CROSS MARKERS. 
+function plotOtherPoints(X, Y)
   plot(X, Y, "@33");
 end
 
@@ -69,11 +71,11 @@ end
 
 ## Vector Vector -> void
 ## Plots a function with a red line and the x and y axis with black lines. 
-function = plotFunction(A, X)
+function plotFunction(A, X)
   deltaX = std(X);
-  averageX = avg(X);
+  averageX = mean(X);
   x = averageX - 2*deltaX : deltaX/10 : averageX + 2*deltaX;
-  axis = ones(x);
+  axis = ones(length(x));
 
   plot(axis, x, 'k');
   plot(x, axis, 'k'); 
@@ -92,7 +94,7 @@ end
 ## Vector Vector Natural -> Vector(N+1)
 ## Returns a vector with the least-squares polynomial coefficient approx. 
 function A = leastSquares(X, Y, N)
-  A = eye(n);
+  A = eye(N);
   A = A(1, :); ## STUB
 end
 
