@@ -23,18 +23,18 @@ function [A, E] = aproxima(X, Y, N, O, P)
     break
   endif
 
+  plotExactPoints(X, Y);
+  hold on; 
+  
   if (O == 0)
     A = interpolate(X, Y, N);
-    plotExactPoints(X, Y);
-    plotOtherPoints(P, A'*P);
-    plotFunction(A, X);
   elseif (O == 1)
     A = leastSquares(X, Y, N);
-    plotExactPoints(X, Y);
-    plotOtherPoints(P, A'*P);
-    plotFunction(A, X);  
   endif
   
+
+  plotOtherPoints(P, transformPoints(A, P));
+  plotFunction(A, X);
 
 end
 
@@ -53,4 +53,52 @@ function R = notValid(X, Y, N, O)
   R = R || xPoints != yPoints; 
 end
 
+## Vector Vector -> void
+## Plots the ordered points with black + markers. 
+function = plotExactPoints(X, Y)
+  plot(X, Y, '+');
+end
 
+## Vector Vector -> void
+## Plots the ordered points with blue circular markers. 
+function = plotOtherPoints(X, Y)
+  plot(X, Y, "@33");
+end
+
+
+
+## Vector Vector -> void
+## Plots a function with a red line and the x and y axis with black lines. 
+function = plotFunction(A, X)
+  deltaX = std(X);
+  averageX = avg(X);
+  x = averageX - 2*deltaX : deltaX/10 : averageX + 2*deltaX;
+  axis = ones(x);
+
+  plot(axis, x, 'k');
+  plot(x, axis, 'k'); 
+
+  plot(x, x*A, 'r');
+end
+
+
+## Vector Vector Natural -> Vector(N+1)
+## Returns a vector with the polynomial coefficient interpolation. 
+function A = interpolate(X, Y, N)
+  A = eye(n);
+  A = A(1, :); ## STUB
+end
+
+## Vector Vector Natural -> Vector(N+1)
+## Returns a vector with the least-squares polynomial coefficient approx. 
+function A = leastSquares(X, Y, N)
+  A = eye(n);
+  A = A(1, :); ## STUB
+end
+
+
+## Vector Vector(n) -> Vector(n)
+## Applies the matrix function to the points in P. 
+function Y = transformPoints(A, P)
+  Y = P; ## STUB
+end
