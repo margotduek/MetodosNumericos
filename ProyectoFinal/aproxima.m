@@ -1,6 +1,5 @@
                                 # PROYECTO FINAL
                                 # METODOS NUMERICOS
-
 ## ITESM CSF
 ## prof. Victor de la Cueva
 
@@ -34,7 +33,7 @@ function [A, E] = aproxima(X, Y, N, O, P)
   
 
   plotOtherPoints(P, transformPoints(A, P));
-  plotFunction(A, X);
+  plotFunction(A, X, Y);
 
 end
 
@@ -71,14 +70,20 @@ end
 
 ## Vector Vector -> void
 ## Plots a function with a red line and the x and y axis with black lines. 
-function plotFunction(A, X)
+function plotFunction(A, X, Y)
   deltaX = std(X);
   averageX = mean(X);
-  x = averageX - 2*deltaX : deltaX/10 : averageX + 2*deltaX;
-  axis = ones(length(x));
+  deltaY = std(Y);
+  averageY = mean(Y); 
+  x = -averageX : deltaX/10 : averageX + 2*deltaX;
+  y = -averageY : deltaY/10 : averageY + 2*deltaY;
+  axisX = x;
+  axisX(:) = 0;
+  axisY = y;
+  axisY(:) = 0;
 
-  plot(axis, x, 'k');
-  plot(x, axis, 'k'); 
+  plot(x, axisX, 'k');
+  plot(axisY, y, 'k');
 
   plot(x, x*A, 'r');
 end
@@ -87,20 +92,20 @@ end
 ## Vector Vector Natural -> Vector(N+1)
 ## Returns a vector with the polynomial coefficient interpolation. 
 function A = interpolate(X, Y, N)
-  A = eye(n);
-  A = A(1, :); ## STUB
+  x = X(1:N+1)
+  x = expandPowers(x, N+1)
+  y = Y(1:N+1)
+  A = inv(x)*y
 end
 
 ## Vector Vector Natural -> Vector(N+1)
 ## Returns a vector with the least-squares polynomial coefficient approx. 
 function A = leastSquares(X, Y, N)
   A = eye(N);
-  A = A(1, :); ## STUB
+  A = A(1, :) ## STUB
 end
 
 
-## Vector Vector(n) -> Vector(n)
-## Applies the matrix function to the points in P. 
-function Y = transformPoints(A, P)
-  Y = P; ## STUB
-end
+
+
+
