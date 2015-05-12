@@ -71,11 +71,18 @@ end
 ## Vector Vector -> void
 ## Plots a function with a red line and the x and y axis with black lines. 
 function plotFunction(A, X, Y, N)
+  x = plotAxis(X, Y)';
+  plot(x, expandPowers(x, N+1)*A, 'r');
+end
+
+## Vector Vector -> vector
+## Plots the axis scaled to the points and returns the continuous values
+## of x for plotting the function. 
+function x = plotAxis(X, Y)
   deltaX = std(X);
   averageX = mean(X);
   deltaY = std(Y);
   averageY = mean(Y);
- 
   
   x = -averageX : deltaX/10 : averageX + 2*deltaX;
   y = -averageY : deltaY/10 : averageY + 2*deltaY;
@@ -86,10 +93,8 @@ function plotFunction(A, X, Y, N)
 
   plot(x, axisX, 'k');
   plot(axisY, y, 'k');
-
-  x = x';
-  plot(x, expandPowers(x, N+1)*A, 'r');
 end
+
 
 
 ## Vector Vector Natural -> Vector(N+1)
