@@ -104,8 +104,8 @@ end
 ## Vector Vector Natural -> Vector(N+1)
 ## Returns a vector with the least-squares polynomial coefficient approx. 
 function A = leastSquares(X, Y, N)
-  A = eye(N);
-  A = A(1, :) ## STUB
+  X = expandPowers(X, N+1);
+  A = inv(X'*X)*X'*Y;
 end
 
 
