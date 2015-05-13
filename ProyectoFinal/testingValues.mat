@@ -1,32 +1,22 @@
-# Created by Octave 3.8.2, Mon May 11 18:43:32 2015 CDT <gerardogtn@MBPdeGedoTeruel>
+# Created by Octave 3.8.2, Wed May 13 13:19:20 2015 CDT <gerardogtn@MacBook-Pro-de-Gerardo-Teruel.local>
 # name: P
 # type: matrix
-# rows: 3
-# columns: 1
- 2.2
- 3.4
- 5
+# rows: 1
+# columns: 3
+ 2.2 3.4 5
 
 
 # name: X
 # type: matrix
-# rows: 5
-# columns: 1
- 0
- 2
- 3
- 6
- 7
+# rows: 1
+# columns: 5
+ 0 2 3 6 7
 
 
 # name: Y
 # type: matrix
-# rows: 5
-# columns: 1
- 0.12
- 0.153
- 0.17
- 0.225
- 0.26
+# rows: 1
+# columns: 5
+ 0.12 0.153 0.17 0.225 0.26
 
 

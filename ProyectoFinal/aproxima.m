@@ -16,6 +16,10 @@
 ## P : X-coordinates of points to find y-apprximation. 
 function [A, E] = aproxima(X, Y, N, O, P)
   E = 0; 
+
+  X = X';
+  Y = Y';
+  P = P';
   
   if  (notValid(X, Y, N, O))
     E = 1; 
@@ -56,14 +60,14 @@ end
 ## Plots the ordered points with black + markers.
 ## TODO: CURRENTLY PLOTS GREEN CROSS MARKERS. 
 function plotExactPoints(X, Y)
-  plot(X, Y, "@12");
+  plot(X, Y, "k+");
 end
 
 ## Vector Vector -> void
 ## Plots the ordered points with blue circular markers.
 ## TODO: CURRENTLY PLOTS BLUE CROSS MARKERS. 
 function plotOtherPoints(X, Y)
-  plot(X, Y, "@33");
+  plot(X, Y, "@b+");
 end
 
 
@@ -84,8 +88,8 @@ function x = plotAxis(X, Y)
   deltaY = std(Y);
   averageY = mean(Y);
   
-  x = -averageX : deltaX/10 : averageX + 2*deltaX;
-  y = -averageY : deltaY/10 : averageY + 2*deltaY;
+  x = -deltaX : deltaX/10 : averageX + 3*deltaX;
+  y = -deltaY : deltaY/10 : averageY + 3*deltaY;
   axisX = x;
   axisX(:) = 0;
   axisY = y;
