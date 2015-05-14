@@ -88,7 +88,6 @@ function x = plotAxis(X, Y)
 
   lowerBoundX = lowerBound(averageX, deltaX);
   upperBoundX = upperBound(averageX, deltaX);
-
   lowerBoundY = lowerBound(averageY, deltaY);
   upperBoundY = upperBound(averageY,deltaY);
   
@@ -113,7 +112,6 @@ function lb = lowerBound(average, delta)
 end
 
 
-
 ## Real Real -> Real
 ## Returns the greatest upperBound that ensures sign switching.
 function ub = upperBound(average, delta)
@@ -122,7 +120,6 @@ function ub = upperBound(average, delta)
     ub = delta;
   endif
 end
-
 
 
 ## Vector Vector Natural -> Vector(N+1)
@@ -141,7 +138,19 @@ function A = leastSquares(X, Y, N)
   A = inv(X'*X)*X'*Y;
 end
 
+## Vector Vector(n) -> Vector(n)
+## Applies the matrix function to the points in P.
+function Y = transformPoints(A, P)
+  Y = expandPowers(P, length(A) -1) * A; 
+end
 
-
+## Vector(M) Natural -> Matrix(M, N)
+## Expands X to include all its powers from 0 until n. 
+function R = expandPowers(X, N)
+  R = X.^0;
+  for i = 1 : N
+    R = [R (X.^i)];
+  endfor
+end
 
 
