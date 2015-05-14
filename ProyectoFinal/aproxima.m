@@ -58,25 +58,23 @@ end
 
 ## Vector Vector -> void
 ## Plots the ordered points with black + markers.
-## TODO: CURRENTLY PLOTS GREEN CROSS MARKERS. 
 function plotExactPoints(X, Y)
   plot(X, Y, "k+");
 end
 
 ## Vector Vector -> void
 ## Plots the ordered points with blue circular markers.
-## TODO: CURRENTLY PLOTS BLUE CROSS MARKERS. 
 function plotOtherPoints(X, Y)
-  plot(X, Y, "@b+");
+  plot(X, Y, "b+");
 end
 
 
 
-## Vector Vector -> void
+## Vector Vector Vector Natural -> void
 ## Plots a function with a red line and the x and y axis with black lines. 
 function plotFunction(A, X, Y, N)
   x = plotAxis(X, Y)';
-  plot(x, expandPowers(x, N+1)*A, 'r');
+  plot(x, expandPowers(x, N)*A, 'r');
 end
 
 ## Vector Vector -> vector
@@ -85,11 +83,17 @@ end
 function x = plotAxis(X, Y)
   deltaX = std(X);
   averageX = mean(X);
-  deltaY = std(Y);
+  deltaY = std(Y)
   averageY = mean(Y);
+
+  lowerBoundX = lowerBound(averageX, deltaX);
+  upperBoundX = upperBound(averageX, deltaX);
+
+  lowerBoundY = lowerBound(averageY, deltaY);
+  upperBoundY = upperBound(averageY,deltaY);
   
-  x = -deltaX : deltaX/10 : averageX + 3*deltaX;
-  y = -deltaY : deltaY/10 : averageY + 3*deltaY;
+  x = lowerBoundX : deltaX/10 : upperBoundX;
+  y = lowerBoundY : deltaY/10 : upperBoundY;
   axisX = x;
   axisX(:) = 0;
   axisY = y;
@@ -99,13 +103,33 @@ function x = plotAxis(X, Y)
   plot(axisY, y, 'k');
 end
 
+## Real Real -> Real
+## Returns the least lowerBound that ensures sign switching.
+function lb = lowerBound(average, delta)
+  lb = average - 3*delta;
+  if(-delta < lb)
+    lb = -delta;
+  endif
+end
+
+
+
+## Real Real -> Real
+## Returns the greatest upperBound that ensures sign switching.
+function ub = upperBound(average, delta)
+  ub = average + 3*delta;
+  if(delta > ub)
+    ub = delta;
+  endif
+end
+
 
 
 ## Vector Vector Natural -> Vector(N+1)
 ## Returns a vector with the polynomial coefficient interpolation. 
 function A = interpolate(X, Y, N)
   x = X(1:N+1);
-  x = expandPowers(x, N+1);
+  x = expandPowers(x, N);
   y = Y(1:N+1);
   A = inv(x)*y;
 end
@@ -113,7 +137,7 @@ end
 ## Vector Vector Natural -> Vector(N+1)
 ## Returns a vector with the least-squares polynomial coefficient approx. 
 function A = leastSquares(X, Y, N)
-  X = expandPowers(X, N+1);
+  X = expandPowers(X, N);
   A = inv(X'*X)*X'*Y;
 end
 

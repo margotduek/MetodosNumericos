@@ -9,7 +9,7 @@
 %! assert(transformPoints(b, A), [3; 5; 7]);
 %! assert(transformPoints(c, A), [4; 10; 18])
 function Y = transformPoints(A, P)
-  Y = expandPowers(P, length(A)) * A; 
+  Y = expandPowers(P, length(A) -1) * A; 
 end
 
 
